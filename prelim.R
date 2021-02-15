@@ -14,6 +14,9 @@ summary_19_20 <- read.csv("league_summary_19_20.csv")
 summary <- right_join(summary_20_21, summary_19_20, by = "Team")
 summary <- summary[-c(1),]
 
+summary_try <- summary %>%
+  pivot_longer(Point.Diff.Rank.y:Spread.Diff.y, names_to = "category", values_to = "value")
+
 four_factors_20_21 <- read.csv("four_factors_20_21.csv")
 four_factors_19_20 <- read.csv("four_factors_19_20.csv")
 four_factors <- right_join(four_factors_20_21, four_factors_19_20, by = "Team")
@@ -32,6 +35,11 @@ play_context <- play_context[-c(1),]
 summary %>%
 ggplot(aes(x = Spread.Diff.x)) +
   geom_histogram(bins = 50)
+
+shooting %>%
+  ggplot(aes(x = All.Three.x, y = All.Three.y)) + 
+  geom_point() + 
+  geom_label(aes(label = Team))
 
 
 
