@@ -15,6 +15,7 @@ summary <- right_join(summary_20_21, summary_19_20, by = "Team")
 summary <- summary[-c(1),]
 
 summary_try <- summary %>%
+  
   pivot_longer(Point.Diff.Rank.y:Spread.Diff.y, names_to = "category", values_to = "value")
 
 four_factors_20_21 <- read.csv("four_factors_20_21.csv")
@@ -26,6 +27,9 @@ shooting_20_21 <- read.csv("shooting_20_21.csv")
 shooting_19_20 <- read.csv("shooting_19_20.csv")
 shooting <- right_join(shooting_20_21, shooting_19_20, by = "Team")
 shooting <- shooting[-c(1),]
+
+shooting_try <- shooting %>%
+  substr(All.Three.x, 1,4)
 
 play_context_20_21 <- read.csv("play_context_20_21.csv")
 play_context_19_20 <- read.csv("play_context_19_20.csv")
