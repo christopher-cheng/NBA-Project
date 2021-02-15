@@ -12,18 +12,28 @@ library(readr)
 summary_20_21 <- read.csv("league_summary_20_21.csv")
 summary_19_20 <- read.csv("league_summary_19_20.csv")
 summary <- right_join(summary_20_21, summary_19_20, by = "Team")
+summary <- summary[-c(1),]
 
 four_factors_20_21 <- read.csv("four_factors_20_21.csv")
 four_factors_19_20 <- read.csv("four_factors_19_20.csv")
 four_factors <- right_join(four_factors_20_21, four_factors_19_20, by = "Team")
+four_factors <- four_factors[-c(1),]
 
 shooting_20_21 <- read.csv("shooting_20_21.csv")
 shooting_19_20 <- read.csv("shooting_19_20.csv")
 shooting <- right_join(shooting_20_21, shooting_19_20, by = "Team")
+shooting <- shooting[-c(1),]
 
 play_context_20_21 <- read.csv("play_context_20_21.csv")
 play_context_19_20 <- read.csv("play_context_19_20.csv")
 play_context <- right_join(play_context_20_21, play_context_19_20, by = "Team")
+play_context <- play_context[-c(1),]
+
+summary %>%
+ggplot(aes(x = Spread.Diff.x)) +
+  geom_histogram(bins = 50)
+
+
 
 
 
