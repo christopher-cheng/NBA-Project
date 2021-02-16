@@ -15,8 +15,9 @@ summary <- right_join(summary_20_21, summary_19_20, by = "Team")
 summary <- summary[-c(1),]
 
 summary_try <- summary %>%
-  
-  pivot_longer(Point.Diff.Rank.y:Spread.Diff.y, names_to = "category", values_to = "value")
+# NEED TO REMOVE PERCENTAGE SIGN IN DATA SET
+  pivot_longer(Point.Diff.Rank.y:Spread.Diff.y, names_to = "category", 
+               values_to = "value")
 
 four_factors_20_21 <- read.csv("four_factors_20_21.csv")
 four_factors_19_20 <- read.csv("four_factors_19_20.csv")
