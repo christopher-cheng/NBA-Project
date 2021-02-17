@@ -2,6 +2,7 @@
 
 library(tidyverse)
 library(readr)
+library(ggrepel)
 
 # Reading in two data sets. One is all NBA games in the 2020-2021 season 
 # through 2/15/21, the other is NBA games in the 2019-2020 season through a
@@ -29,9 +30,6 @@ shooting_19_20 <- read.csv("shooting_19_20.csv")
 shooting <- right_join(shooting_20_21, shooting_19_20, by = "Team")
 shooting <- shooting[-c(1),]
 
-shooting_try <- shooting %>%
-  substr(All.Three.x, 1,4)
-
 play_context_20_21 <- read.csv("play_context_20_21.csv")
 play_context_19_20 <- read.csv("play_context_19_20.csv")
 play_context <- right_join(play_context_20_21, play_context_19_20, by = "Team")
@@ -44,7 +42,11 @@ ggplot(aes(x = Spread.Diff.x)) +
 shooting %>%
   ggplot(aes(x = All.Three.x, y = All.Three.y)) + 
   geom_point() + 
-  geom_label(aes(label = Team))
+  geom_label_repel(aes(label = Team)) + 
+  theme(axis.text.x= element_text(size = 8)) + 
+  labs(title = "Team 3PT%: 2020-2021 vs. 2019-2020", x = "2020-2021 3PT%", 
+       y = "2019-2020 3PT%") +
+  theme_classic()
 
 
 
